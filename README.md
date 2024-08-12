@@ -5,7 +5,7 @@ This project is a web application for managing customers and invoices, built usi
 ## Project Structure
 
 ```
-/client # Frontend (React.js)
+/Frontend (React.js)
 ├── /public
 │   └── index.html
 ├── /src
@@ -28,7 +28,7 @@ This project is a web application for managing customers and invoices, built usi
 │   └── index.css # Global styles
 ├── package.json # Frontend dependencies and scripts
 
-/server # Backend (Node.js with Express)
+/Backend (Node.js with Express)
 ├── /config # Database configuration
 │   └── config.json
 ├── /controllers # Route controllers
@@ -56,7 +56,7 @@ README.md # Project setup and usage instructions
 
 ### Backend Setup
 
-1. Clone the repository and navigate to the `server` directory.
+1. Clone the repository and navigate to the `backend` directory.
 2. Install the dependencies:
    ```bash
    npm install
@@ -73,7 +73,7 @@ README.md # Project setup and usage instructions
 
 ### Frontend Setup
 
-1. Navigate to the `client` directory.
+1. Navigate to the `frontend` directory.
 2. Install the dependencies:
    ```bash
    npm install
