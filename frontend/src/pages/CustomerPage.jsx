@@ -1,29 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import customerService from '../services/customerService';
-import CustomerForm from '../components/CustomerForm';
+import React, { useState } from "react";
+import CustomerForm from "../components/CustomerForm";
+import CustomerList from "../components/CustomerList";
 
-const CustomersPage = () => {
-    const [customers, setCustomers] = useState([]);
+function CustomersPage() {
+  const [showForm, setShowForm] = useState(false);
 
-    useEffect(() => {
-        const fetchCustomers = async () => {
-            const data = await customerService.getCustomers();
-            setCustomers(data);
-        };
-        fetchCustomers();
-    }, []);
+  const handleCreateClick = () => {
+    setShowForm(true);
+  };
 
-    return (
+  const handleFormClose = () => {
+    setShowForm(false);
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      {showForm ? (
         <div>
-            <h1>Customers</h1>
-            <CustomerForm />
-            <ul>
-                {customers.map(customer => (
-                    <li key={customer.id}>{customer.customerName}</li>
-                ))}
-            </ul>
+          <button
+            onClick={handleFormClose}
+            className="mb-4 bg-gray-300 text-black rounded-md py-2 px-4 hover:bg-gray-400 transition duration-300"
+          >
+            Volver al Listado
+          </button>
+          <CustomerForm />
         </div>
-    );
-};
+      ) : (
+        <CustomerList onCreate={handleCreateClick} />
+      )}
+    </div>
+  );
+}
 
 export default CustomersPage;
