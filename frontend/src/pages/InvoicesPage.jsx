@@ -1,31 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import invoiceService from '../services/invoiceService';
-import InvoiceForm from '../components/InvoiceForm';
+import React, { useState } from "react";
+import InvoiceForm from "../components/InvoiceForm";
+import InvoiceList from "../components/InvoiceList";
 
-const InvoicesPage = () => {
-    const [invoices, setInvoices] = useState([]);
+function InvoicesPage() {
+  const [showForm, setShowForm] = useState(false);
 
-    useEffect(() => {
-        const fetchInvoices = async () => {
-            const data = await invoiceService.getInvoices();
-            setInvoices(data);
-        };
-        fetchInvoices();
-    }, []);
+  const handleCreateClick = () => {
+    setShowForm(true);
+  };
 
-    return (
+  const handleFormClose = () => {
+    setShowForm(false);
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      {showForm ? (
         <div>
-            <h1>Invoices</h1>
-            <InvoiceForm />
-            <ul>
-                {invoices.map(invoice => (
-                    <li key={invoice.id}>
-                        {invoice.productName} - {invoice.totalValue.toFixed(2)}
-                    </li>
-                ))}
-            </ul>
+          <button
+            onClick={handleFormClose}
+            className="mb-4 bg-gray-300 text-black rounded-md py-2 px-4 hover:bg-gray-400 transition duration-300"
+          >
+            Volver al Listado
+          </button>
+          <InvoiceForm />
         </div>
-    );
-};
+      ) : (
+        <InvoiceList onCreate={handleCreateClick} />
+      )}
+    </div>
+  );
+}
 
 export default InvoicesPage;
